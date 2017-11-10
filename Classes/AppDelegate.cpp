@@ -1,4 +1,5 @@
 #include "AppDelegate.h"
+
 #include "SceneFactory.h"
 
 // #define USE_AUDIO_ENGINE 1
@@ -67,7 +68,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     }
 
     // turn on display FPS
-	// true ‚ÅFPS•`‰æ‚µ‚Ä‚é
+	// true ã§FPSæç”»ã—ã¦ã‚‹
     director->setDisplayStats(false);
 
     // set FPS. the default value is 1.0/60 if you don't call this
@@ -95,7 +96,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
     // create a scene. it's an autorelease object
-	// Å‰‚ÌƒV[ƒ“
+	// æœ€åˆã®ã‚·ãƒ¼ãƒ³
     auto scene = SceneFactory::create();
 
     // run
