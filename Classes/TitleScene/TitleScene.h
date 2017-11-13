@@ -1,9 +1,21 @@
-#pragma once
+#ifndef _TITLESCENE_H_2017_11_11_
+#define _TITLESCENE_H_2017_11_11_
+
 #include "cocos2d.h"
-class TitleScene
+
+class TitleUILayer;
+
+class TitleScene : public cocos2d::Scene
 {
 public:
-	static cocos2d::Scene* create();
-private:
+	TitleScene() {};
+	~TitleScene() {};
+	bool init();
+	void update();
+	CREATE_FUNC(TitleScene);
 
+private:
+	
+	TitleUILayer* m_uilayer;
 };
+#endif
