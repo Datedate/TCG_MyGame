@@ -15,7 +15,6 @@ public:
 	CREATE_FUNC(TitleScene);
 
 private:
-	
 	TitleUILayer* m_uilayer;
 };
 #endif
