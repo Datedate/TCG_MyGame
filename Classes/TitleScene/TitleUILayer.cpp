@@ -27,9 +27,10 @@ bool TitleUILayer::init() {
 
 	auto seqbackground = Sequence::create(
 		FadeIn::create(0.8),
+		FadeOut::create(0.2),
 		CallFunc::create([&]() {
 #if COCOS2D_DEBUG
-		Director::getInstance()->runWithScene(LobbyScene::create());
+		Director::getInstance()->replaceScene(LobbyScene::create());
 #else
 			log("タップ開始");
 			m_fadeFlag = true;
@@ -54,7 +55,7 @@ bool TitleUILayer::onTouchBegin(cocos2d::Touch* pTouch, cocos2d::Event* pEvent) 
 
 	if (bbox.containsPoint(touchPos)) {
 		log("Next Scene");
-		Director::getInstance()->runWithScene(LobbyScene::create());
+		Director::getInstance()->replaceScene(LobbyScene::create());
 		return true;
 	}
 	return false;
