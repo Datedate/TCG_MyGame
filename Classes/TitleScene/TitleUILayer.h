@@ -9,6 +9,7 @@ class TitleUILayer : public cocos2d::Layer
 {
 public:
 	bool init();
+	void InitListener();
 	CREATE_FUNC(TitleUILayer);
 private:
 	virtual bool onTouchBegin(cocos2d::Touch* pTouch, cocos2d::Event* pEvent);
