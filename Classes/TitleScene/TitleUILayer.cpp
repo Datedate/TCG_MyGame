@@ -27,18 +27,15 @@ bool TitleUILayer::init() {
 
 	auto seqbackground = Sequence::create(
 		FadeIn::create(0.8),
-		FadeOut::create(0.2),
 		CallFunc::create([&]() {
-#if COCOS2D_DEBUG
-		Director::getInstance()->replaceScene(LobbyScene::create());
-#else
 			log("タップ開始");
 			m_fadeFlag = true;
-#endif
 		}),
 		NULL
 		);
 
+	InitListener();
+	
 	m_backGround->runAction(seqbackground);
 	
 	this->addChild(m_button,5);
@@ -46,6 +43,39 @@ bool TitleUILayer::init() {
 	return true;
 }
 
+void TitleUILayer::InitListener() {
+#if COCOS2D_DEBUG
+	EventListenerMouse* mouseListener = EventListenerMouse::create();
+	mouseListener->onMouseDown = [=](Event* _event) {
+		if (!m_fadeFlag) return;
+		auto seq = Sequence::create(
+			FadeOut::create(0.4),
+			CallFunc::create([&]() {
+			Director::getInstance()->replaceScene(LobbyScene::create());
+		}),
+			NULL
+			);
+
+		m_backGround->runAction(seq);
+	};
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(mouseListener, this);
+#else
+	EventListenerTouchOneByOne* touchListener = EventListenerTouchOneByOne::create();
+	touchListener->onTouchBegin = [=](Touch* _touch,Event* _event) {
+		if (!m_fadeFlag) return;
+		auto seq = Sequence::create(
+			FadeOut::create(0.4),
+			CallFunc::create([&]() {
+			Director::getInstance()->replaceScene(LobbyScene::create());
+		}),
+			NULL
+			);
+
+		m_backGround->runAction(seq);
+	};
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
+#endif
+}
 
 bool TitleUILayer::onTouchBegin(cocos2d::Touch* pTouch, cocos2d::Event* pEvent) {
 	if (!m_fadeFlag) return false;

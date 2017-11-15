@@ -12,7 +12,9 @@ bool LobbyScene::init() {
 	m_backLayer = LobbyBackGroundLayer::create();
 	m_uiLayer = LobbyUILayer::create();
 
-	this->addChild(m_mainLayer);
+	this->addChild(m_backLayer, 1);
+	this->addChild(m_mainLayer, 2);
+	this->addChild(m_uiLayer, 3);
 
 	return true;
 }
